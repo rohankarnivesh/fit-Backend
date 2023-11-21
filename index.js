@@ -1,8 +1,8 @@
 import express from "express";
 import { config } from "dotenv";
 import connection from './Database/connection.js';
-import router from "./Router/routes.js";
 import cookieParser from "cookie-parser";
+import router from "./Router/routes.js";
 import helmet from 'helmet';
 import cors from 'cors';
 import bcrypt from 'bcrypt';
@@ -23,7 +23,7 @@ app.use(cors({
 }));
 app.options('*', cors());
 app.use(express.json({ extended: true }));
-app.use(authenticateToken); 
+app.use(authenticateToken);
 app.use(cookieParser());
 app.use("/api", router);
 app.use(helmet());
@@ -150,8 +150,6 @@ connection().then(() => {
       res.status(500).json({ message: 'Internal Server Error' });
     }
   });
-  
-
   app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
   });

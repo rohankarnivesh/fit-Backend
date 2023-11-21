@@ -1,4 +1,4 @@
-import fitness from "../../Schema/User/fitness.js";
+import Fitness from "../../Schema/User/fitness.js";
 import { Problem, Success } from "../../Custom/Message.js";
 
 /**
@@ -8,6 +8,7 @@ import { Problem, Success } from "../../Custom/Message.js";
  */
 
 export const addFitnessData = async (request, response, next) => {
+  console.log("Hello world");
   try {
     const userId = await request.userId;
 
@@ -16,7 +17,7 @@ export const addFitnessData = async (request, response, next) => {
       return next(Problem(401, "Unauthorized"));
     }
 
-    const fitnessData = new fitness({
+    const fitnessData = new Fitness({
       user: userId, // Link the fitness data to the authenticated user
       ...request.body, // Spread the properties from request.body
     });

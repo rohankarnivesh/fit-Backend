@@ -1,12 +1,14 @@
 import jwt from 'jsonwebtoken';
 
-const authenticateToken = (request, response, next) => {
+const authenticateToken = async (request, response, next) => {
+    console.log("Hello1");
     try {
-        const token = request.cookies.Token;
-        
+        const token = await request.cookies.Token;
+        console.log(token);
         if (!token) {
             return response.status(401).json({ error: "Access denied" });
         }
+        console.log("hell");
 
         jwt.verify(token, process.env.SECRET, (error, decodedToken) => {
             if (error) {
